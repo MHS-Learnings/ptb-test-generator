@@ -3,66 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PTB Test Generator</title>
+    <title>PTB Test Generator — Professional Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .card { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 450px; text-align: center; }
-        h2 { color: #1e3d59; margin-bottom: 10px; }
-        p { color: #666; font-size: 14px; margin-bottom: 25px; }
-        select, input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 15px; }
-        button { width: 100%; padding: 14px; background-color: #17b978; color: white; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 15px; transition: 0.3s; }
-        button:hover { background-color: #139a63; }
-        #status { margin-top: 20px; font-weight: bold; color: #1e3d59; word-break: break-all; }
-        .api-box { background: #fff3cd; padding: 10px; border-radius: 6px; margin-bottom: 15px; border: 1px solid #ffeeba; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(-45deg, #1e3d59, #17b978, #111e25, #085f63);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .dashboard-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 480px;
+            transition: transform 0.3s ease;
+        }
+
+        .dashboard-container:hover {
+            transform: translateY(-5px);
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header-section h2 {
+            color: #1e3d59;
+            font-weight: 700;
+            font-size: 26px;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        .header-section p {
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1e3d59;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-control {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            background-color: #f8fafc;
+            color: #334155;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-control:focus {
+            border-color: #17b978;
+            background-color: #fff;
+            box-shadow: 0 0 0 4px rgba(23, 185, 120, 0.15);
+        }
+
+        .api-key-wrapper {
+            background: #fff9e6;
+            border: 1px dashed #ffe082;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #17b978, #0a935a);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(23, 185, 120, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(23, 185, 120, 0.4);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        #status-display {
+            margin-top: 25px;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.6;
+            display: none;
+            text-align: center;
+        }
+
+        .status-loading {
+            display: block !important;
+            background-color: #f0fdf4;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h2>PTB Test Generator</h2>
-    <p>Sirf aik click mein Google Form banayein</p>
+<div class="dashboard-container">
+    <div class="header-section">
+        <h2>PTB Smart Test Generator</h2>
+        <p>Punjab Textbook Board ki books se 1-click mein automated Google Form test tayar karein.</p>
+    </div>
 
-    <div class="api-box">
-        <input type="password" id="apiKey" placeholder="Enter Gemini API Key yahan dalein">
+    <!-- API Key Section -->
+    <div class="api-key-wrapper">
+        <div class="form-group" style="margin-bottom: 0;">
+            <label for="apiKey">Gemini API Key</label>
+            <input type="password" id="apiKey" class="input-control" placeholder="Paste your secret key here...">
+        </div>
     </div>
     
-    <select id="classSelect">
-        <option value="">Class Select Karein</option>
-        <option value="9th Class">9th Class</option>
-        <option value="10th Class">10th Class</option>
-        <option value="11th Class">11th Class</option>
-        <option value="12th Class">12th Class</option>
-    </select>
+    <!-- Class Select -->
+    <div class="form-group">
+        <label for="classSelect">Class Level</label>
+        <select id="classSelect" class="input-control">
+            <option value="">-- Choose Class --</option>
+            <option value="9th Class">Class 9th (Matric)</option>
+            <option value="10th Class">Class 10th (Matric)</option>
+            <option value="11th Class">Class 11th (FSc/ICS)</option>
+            <option value="12th Class">Class 12th (FSc/ICS)</option>
+        </select>
+    </div>
 
-    <select id="subjectSelect">
-        <option value="">Subject Select Karein</option>
-        <option value="Physics">Physics</option>
-        <option value="Chemistry">Chemistry</option>
-        <option value="Biology">Biology</option>
-        <option value="Computer Science">Computer Science</option>
-    </select>
+    <!-- Subject Select -->
+    <div class="form-group">
+        <label for="subjectSelect">Subject</label>
+        <select id="subjectSelect" class="input-control">
+            <option value="">-- Choose Subject --</option>
+            <option value="Physics">Physics</option>
+            <option value="Chemistry">Chemistry</option>
+            <option value="Biology">Biology</option>
+            <option value="Computer Science">Computer Science</option>
+        </select>
+    </div>
 
-    <input type="text" id="chapterInput" placeholder="Chapter ka naam ya number likhein">
+    <!-- Chapter Input -->
+    <div class="form-group">
+        <label for="chapterInput">Chapter Details</label>
+        <input type="text" id="chapterInput" class="input-control" placeholder="e.g., Chapter 1: Physical Quantities">
+    </div>
 
-    <button onclick="startProcess()">1-Click Generate Form</button>
+    <!-- Action Button -->
+    <button class="btn-submit" onclick="startProcess()">Generate Google Form</button>
 
-    <div id="status"></div>
+    <!-- Status Message -->
+    <div id="status-display"></div>
 </div>
 
 <script>
-    // Is script mein agle step mein hum asli kam wala code jorein ge.
     function startProcess() {
         let key = document.getElementById('apiKey').value;
         let cls = document.getElementById('classSelect').value;
         let sub = document.getElementById('subjectSelect').value;
         let ch = document.getElementById('chapterInput').value;
+        let statusBox = document.getElementById('status-display');
 
         if(!key || !cls || !sub || !ch) {
             alert("Meharbani karke saari maloomat darj karein!");
             return;
         }
 
-        document.getElementById('status').innerText = "AI se raabta ho raha hai... PTB books se MCQs nikale ja rahe hain...";
+        statusBox.className = "status-loading";
+        statusBox.innerText = "System Active: Gemini AI se raabta ho raha hai... PTB syllabus ke mutabiq questions generate kiye ja rahe hain. Please wait...";
     }
 </script>
 
