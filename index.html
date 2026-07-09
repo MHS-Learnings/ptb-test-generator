@@ -55,6 +55,17 @@
             max-width: 90%;
         }
 
+        .institutional-logo {
+            width: auto;
+            height: auto;
+            max-width: 260px;
+            max-height: 45vh;
+            object-fit: contain;
+            opacity: 0;
+            transform: scale(0.95);
+            animation: logoReveal 1s forwards cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
         .light-sweep-bar {
             width: 0%;
             height: 3px;
@@ -62,6 +73,11 @@
             margin-top: 25px;
             box-shadow: 0px 0px 15px #F4B400;
             animation: expandBar 1.8s 0.2s forwards cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes logoReveal {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
         }
 
         @keyframes expandBar {
@@ -98,35 +114,25 @@
 </head>
 <body class="bg-bgSlate font-sans text-[#1E293B] antialiased overflow-x-hidden math-pattern">
 
-    <!-- ================= SPLASH SCREEN INTERFACE (FIXED & FULLY INTERACTIVE) ================= -->
+    <!-- ================= SPLASH SCREEN INTERFACE ================= -->
     <div id="bise-splash-screen">
         <div class="splash-container">
-            <!-- Dynamic Institutional Logo replacing fragile image links -->
-            <div class="flex flex-col items-center justify-center space-y-2">
-                <div class="w-24 h-24 bg-gradient-to-br from-white via-slate-100 to-slate-300 rounded-2xl flex items-center justify-center p-2 border-2 border-olympiadGold shadow-2xl transform rotate-3">
-                    <span class="font-academic text-3xl font-black text-olympiadNavy tracking-tighter">MHS</span>
-                </div>
-                <h1 class="font-academic text-4xl sm:text-5xl font-black tracking-widest text-white mt-4 drop-shadow-md">
-                    BISE <span class="text-olympiadGold">MHS</span>
-                </h1>
-                <p class="font-sans text-[10px] sm:text-xs font-bold tracking-widest text-slate-400 uppercase">
-                    National Mathematics Olympiad 2026
-                </p>
-            </div>
+            <!-- Aapka Original MHS Logo Poster -->
+            <img src="https://img.sanishtech.com/u/8bc6eb4667d5e98ea696b7a8bf0277a4.png" alt="MHS Logo" class="institutional-logo">
             <div class="light-sweep-bar"></div>
         </div>
     </div>
-    <!-- ====================================================================================== -->
+    <!-- =========================================================== -->
 
     <!-- STICKY HEADER -->
     <header class="glass-nav sticky top-0 z-50 text-white shadow-md border-b border-white/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 
-                <!-- BRANDING LOGO (FIXED CODE EMBLEM) -->
+                <!-- BRANDING LOGO (WITH YOUR NEW IMAGE) -->
                 <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                    <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center border border-olympiadGold shadow-inner">
-                        <span class="font-academic font-black text-base text-olympiadNavy">MHS</span>
+                    <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center p-0.5 border border-olympiadGold shadow-md overflow-hidden">
+                        <img src="https://img.sanishtech.com/u/8bc6eb4667d5e98ea696b7a8bf0277a4.png" alt="MHS Logo" class="w-full h-full object-contain">
                     </div>
                     <div class="flex flex-col">
                         <span class="font-academic font-black text-lg tracking-wider leading-none text-white">MHS</span>
